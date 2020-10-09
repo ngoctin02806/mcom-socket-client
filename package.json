@@ -1,7 +1,6 @@
 {
-  "name": "socket-client-mcom",
+  "name": "@mcom/socket-client-mcom",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +10,18 @@
   "license": "ISC",
   "dependencies": {
     "socket.io-client": "^2.3.1"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngoctin02806/mcom-socket-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ngoctin02806/mcom-socket-client/issues"
+  },
+  "homepage": "https://github.com/ngoctin02806/mcom-socket-client#readme",
+  "description": ""
 }
