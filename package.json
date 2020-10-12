@@ -1,5 +1,5 @@
 {
-  "name": "@mcom/socket-client-mcom",
+  "name": "mcom-socket-client",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

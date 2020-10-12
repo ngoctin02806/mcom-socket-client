@@ -1,54 +1,55 @@
-const io = require('socket.io-client');
+const io = require("socket.io-client");
 
 const state = {
-    io: io,
-    socket: null,
+  io: io,
+  socket: null,
 };
 
 const connect = ({ host = "http://localhost", port = 80 }, token, channels) => {
-    try {
-        const socket = io.connect(`${host}:${port}`, {
-            query: {
-                token,
-                rooms: JSON.stringify(channels)
-            }
-        });
+  try {
+    const socket = io.connect(`${host}:${port}`, {
+      reconnection: false,
+      query: {
+        token,
+        rooms: JSON.stringify(channels),
+      },
+    });
 
-        state.socket = socket;
-    } catch (error) {
-        throw error;
-    }
-}
+    state.socket = socket;
+  } catch (error) {
+    throw error;
+  }
+};
 
 const publish = (payload, channel) => {
-    try {
-        state.socket.emit("action", {
-            room_id: channel, 
-            payload
-        });
-    } catch (error) {
-        throw error;
-    }
+  try {
+    state.socket.emit("action", {
+      room_id: channel,
+      payload,
+    });
+  } catch (error) {
+    throw error;
+  }
 };
 
 const subscribe = (channel, callback) => {
-    try {
-        state.socket.once(channel, msg => {
-            callback(msg);
-        })
-    } catch (error) {
-        throw error;
-    }
-}
+  try {
+    state.socket.on(channel, (msg) => {
+      callback(msg);
+    });
+  } catch (error) {
+    throw error;
+  }
+};
 
 const ioClient = () => state.io;
 
 const socket = () => state.socket;
 
 module.exports = {
-    connect,
-    publish,
-    subscribe,
-    ioClient,
-    socket
-}
+  connect,
+  publish,
+  subscribe,
+  ioClient,
+  socket,
+};
